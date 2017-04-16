@@ -1,0 +1,13 @@
+AllCops:
+  UseCache: true
+  DisabledByDefault: false
+  TargetRubyVersion: 2.3
+  Exclude:
+    - 'bin/**/*'
+    - 'vendor/**/*'
+    - 'Gemfile'
+    - 'surf.gemspec'
+
+Style/Documentation:
+  Description: 'Document classes and non-namespace modules.'
+  Enabled: false

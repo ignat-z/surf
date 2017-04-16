@@ -1,7 +1,9 @@
+# frozen_string_literal: true
+
 require 'test_helper'
 
-class SurfTest < Minitest::Test
-  def test_that_it_has_a_version_number
+describe Surf do
+  it 'has_a_version_number' do
     refute_nil ::Surf::VERSION
   end
 end
