@@ -7,6 +7,8 @@ require 'json'
 
 module Surf
   class GithubRequest
+    MEDIA_TYPE = 'application/vnd.github.black-cat-preview+json'
+
     def initialize(token: ENV.fetch('GITHUB_TOKEN'), http_lib: Net::HTTP)
       @token = token
       @http_lib = http_lib
@@ -20,7 +22,7 @@ module Surf
       end
     end
 
-    def get(url, params={})
+    def get(url, params = {})
       request(url) do |uri|
         uri.query = URI.encode_www_form(params)
         Net::HTTP::Get.new(uri)
@@ -38,7 +40,7 @@ module Surf
       http.use_ssl = true
       http.verify_mode = OpenSSL::SSL::VERIFY_NONE
       request = yield(uri)
-      request.add_field('Accept', "application/vnd.github.black-cat-preview+json")
+      request.add_field('Accept', MEDIA_TYPE)
       request.add_field('Authorization', "token #{token}")
       parse_response(http.request(request))
     end
