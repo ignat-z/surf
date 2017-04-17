@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require 'test_helper'
-require 'surf/github_request'
+require 'surf/github/github_request'
 
 module Fake
   class SuccessResponse
