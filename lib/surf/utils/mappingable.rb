@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'surf/configuration'
+require 'surf/utils/configuration'
 
 module Mappingable
   def self.included(base)

@@ -6,8 +6,10 @@ AllCops:
     - 'bin/**/*'
     - 'vendor/**/*'
     - 'Gemfile'
+    - 'Rakefile'
     - 'surf.gemspec'
 
 Style/Documentation:
-  Description: 'Document classes and non-namespace modules.'
   Enabled: false
+Metrics/LineLength:
+  Max: 100

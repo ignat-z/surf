@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
-require 'surf/configuration'
+require 'surf/utils/mappingable'
+require 'surf/utils/configuration'
 
 module Surf
   class PullRequest

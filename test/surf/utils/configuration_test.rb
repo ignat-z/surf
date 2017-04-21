@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require 'test_helper'
-require 'surf/configuration'
+require 'surf/utils/configuration'
 
 describe Configuration do
   class ExtendableClass

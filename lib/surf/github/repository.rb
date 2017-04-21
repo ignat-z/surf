@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 require 'surf/repository'
-require 'surf/mappingable'
 
 module Surf
   module Github

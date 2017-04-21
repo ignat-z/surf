@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require 'json'
-require 'surf/mappingable'
+require 'surf/utils/mappingable'
 require 'surf/pull_request'
 
 module Surf

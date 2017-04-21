@@ -9,9 +9,9 @@ Rake::TestTask.new(:test) do |t|
   t.test_files = FileList['test/**/*_test.rb']
 end
 
-task :console do |t|
+task :console do |_t|
   require 'dotenv/load'
-  Dir["./lib/**/*.rb"].each { |file| require file }
+  Dir['./lib/**/*.rb'].each { |file| require file }
   require 'pry'
   binding.pry
 end
