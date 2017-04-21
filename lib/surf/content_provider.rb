@@ -2,7 +2,7 @@
 
 module Surf
   class ContentProvider
-    def pull_request_info(_repository, _id)
+    def pull_request(_repository, _id)
       raise
     end
   end

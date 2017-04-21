@@ -9,7 +9,7 @@ describe Surf::PullRequest do
     end
 
     class ContentProvider
-      def pull_request_info(_repo, _id)
+      def pull_request(_repo, _id)
         { a: { b: { c: 23 } } }
       end
     end
@@ -19,7 +19,7 @@ describe Surf::PullRequest do
     Surf::PullRequest
       .dup
       .configuration do |config|
-        config.content_provider = Fake::ContentProvider.new
+        config.content_provider = Fake::ContentProvider
         config.mapping = { value: %i[a b c] }
       end.new(Fake::Repo.new, 42)
   end

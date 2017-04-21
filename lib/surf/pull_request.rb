@@ -12,7 +12,7 @@ module Surf
     def initialize(repository, id)
       @repository = repository
       @id = id
-      body = self.class.content_provider.pull_request_info(repository, id)
+      body = self.class.content_provider.new.pull_request(repository, id)
       create_mapping(body)
     end
 
