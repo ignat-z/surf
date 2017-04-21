@@ -20,12 +20,12 @@ describe Surf::PullRequest do
       .dup
       .configuration do |config|
         config.content_provider = Fake::ContentProvider
-        config.mapping = { value: %i[a b c] }
+        config.mapping = mapping
       end.new(Fake::Repo.new, 42)
   end
 
   let(:webhook) { File.read('test/fixtures/webhook_registration.json') }
-  let(:mapping) { { pulls_url: %w[PullRequest pulls_url] } }
+  let(:mapping) { { value: %i[a b c] } }
 
   it 'creates methods to allow use mapped keys' do
     assert_equal subject.value, 23
