@@ -13,23 +13,16 @@ module Fake
 end
 
 describe Surf::HttpRoute do
-  context '.mapping' do
+  context '.route' do
     it 'returns error with description' do
-      error = assert_raises { Surf::HttpRoute.mapping }
+      error = assert_raises { Surf::HttpRoute.route }
       assert_match(/provide tuple/, error.message)
-    end
-  end
-
-  context '.call' do
-    it 'create new instance of self class and calls call with all HTTP stuff' do
-      result = Fake::Route.call({}, {})
-      assert_equal result, :response
     end
   end
 
   context '#call' do
     it 'by default raises exception' do
-      assert_raises { Surf::HttpRoute.new({}, {}).mapping }
+      assert_raises { Surf::HttpRoute.new({}, {}).call }
     end
   end
 end

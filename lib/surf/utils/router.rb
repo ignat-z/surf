@@ -14,9 +14,9 @@ module Surf
 
     def call(env)
       @routes.each do |route|
-        method, pattern = route.mapping
+        method, pattern = route.route
         match = env['REQUEST_METHOD'] == method && regex_matcher(env['PATH_INFO'], pattern)
-        return route.call(env, match) if match
+        return route.new(env, match).call if match
       end
       default
     end
