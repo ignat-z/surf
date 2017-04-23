@@ -5,12 +5,12 @@ require 'rack/test'
 require 'surf/webhook_handler'
 
 describe Surf::WebhookHandler do
-  let(:webhook_body) { File.read('test/fixtures/webhook_registration.json') }
+  let(:webhook) { Fixtures.webhook_registration }
   let(:invalid_secret) { '1234567890' }
   let(:secret) { '123456789' }
   let(:env) do
     {
-      'rack.input' => StringIO.new(webhook_body),
+      'rack.input' => StringIO.new(webhook),
       'REQUEST_METHOD' => 'POST',
       'HTTP_X_GITHUB_EVENT' => 'ping',
       'HTTP_X_HUB_SIGNATURE' => 'sha1=03a5a335a3e0c2b927229092ef27ad2aa29f8053'

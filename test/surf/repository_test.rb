@@ -11,7 +11,7 @@ describe Surf::Repository do
       .new(webhook)
   end
 
-  let(:webhook) { File.read('test/fixtures/webhook_registration.json') }
+  let(:webhook) { Fixtures.webhook_registration }
   let(:mapping) { { pulls_url: %w[repository pulls_url] } }
 
   it 'creates methods to allow use mapped keys' do

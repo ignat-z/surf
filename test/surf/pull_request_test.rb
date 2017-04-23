@@ -24,7 +24,7 @@ describe Surf::PullRequest do
       end.new(Fake::Repo.new, 42)
   end
 
-  let(:webhook) { File.read('test/fixtures/webhook_registration.json') }
+  let(:webhook) { Fixtures.webhook_registration }
   let(:mapping) { { value: %i[a b c] } }
 
   it 'creates methods to allow use mapped keys' do
