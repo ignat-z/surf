@@ -3,12 +3,13 @@
 require 'puma'
 
 require 'surf/utils/router'
+require 'surf/webhook_handler'
 require 'surf/version'
 
 module Surf
   def self.run
     conifg = OpenStruct.new(host: 'localhost', port: 9001)
-    app = Surf::Router.new([])
+    app = Surf::Router.new([Surf::WebhookHandler])
     @server_thread = Thread.new { run_app(app, conifg) }
     @server_thread.abort_on_exception = true
   end

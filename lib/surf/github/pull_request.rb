@@ -2,6 +2,7 @@
 
 require 'surf/repository'
 require 'surf/utils/mappingable'
+require 'surf/github/content_provider'
 
 module Surf
   module Github

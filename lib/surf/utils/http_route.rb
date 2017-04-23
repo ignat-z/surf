@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+require 'surf/utils/configuration'
 require 'rack/request'
 
 module Surf

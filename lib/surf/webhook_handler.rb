@@ -2,6 +2,8 @@
 
 require 'rack/utils'
 require 'rack/request'
+require 'surf/utils/http_route'
+require 'surf/utils/mappingable'
 
 module Surf
   class DefaultCallback
@@ -28,6 +30,8 @@ module Surf
     cattr_accessor :route, %w[POST /webhook]
     cattr_accessor :secret, ENV['GITHUB_SECRET_TOKEN']
 
+    attr_reader :raw_body
+
     def self.add_callback(event:, action: DEFAULT_ACTION, callback:)
       key = KEY_GENERATOR.call(event, action)
       callbacks[key] ||= [default_callback]
@@ -43,8 +47,6 @@ module Surf
     end
 
     private
-
-    attr_reader :raw_body
 
     def action_key
       KEY_GENERATOR.call(request.env['HTTP_X_GITHUB_EVENT'], action || DEFAULT_ACTION)

@@ -2,6 +2,7 @@
 
 require 'octokit'
 require 'surf/utils/configuration'
+require 'surf/content_provider'
 
 module Surf
   module Github
