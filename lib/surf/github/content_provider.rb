@@ -1,13 +1,13 @@
 # frozen_string_literal: true
 
 require 'octokit'
-require 'surf/utils/configuration'
+require 'surf/utils/configurationable'
 require 'surf/content_provider'
 
 module Surf
   module Github
     class ContentProvider < Surf::ContentProvider
-      extend Configuration
+      extend Configurationable
 
       cattr_accessor :client, Octokit::Client.new(access_token: ENV['GITHUB_TOKEN'])
 

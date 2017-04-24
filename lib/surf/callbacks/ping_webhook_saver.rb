@@ -1,11 +1,11 @@
 # frozen_string_literal: true
 
-require 'surf/utils/configuration'
+require 'surf/utils/configurationable'
 require 'surf/github/repository'
 
 module Surf
   class PingWebhookSaver
-    extend Configuration
+    extend Configurationable
 
     cattr_accessor :storage
 

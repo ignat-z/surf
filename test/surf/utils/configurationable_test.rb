@@ -1,11 +1,11 @@
 # frozen_string_literal: true
 
 require 'test_helper'
-require 'surf/utils/configuration'
+require 'surf/utils/configurationable'
 
-describe Configuration do
+describe Configurationable do
   class ExtendableClass
-    extend Configuration
+    extend Configurationable
 
     cattr_accessor :simple_setting
     cattr_accessor :setting_with_default, 42

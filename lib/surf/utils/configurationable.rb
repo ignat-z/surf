@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module Configuration
+module Configurationable
   def configuration
     yield self
     self

@@ -1,11 +1,11 @@
 # frozen_string_literal: true
 
 require 'surf/utils/mappingable'
-require 'surf/utils/configuration'
+require 'surf/utils/configurationable'
 
 module Surf
   class PullRequest
-    extend Configuration
+    extend Configurationable
     include Mappingable
 
     cattr_accessor :content_provider

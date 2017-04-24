@@ -1,11 +1,11 @@
 # frozen_string_literal: true
 
-require 'surf/utils/configuration'
+require 'surf/utils/configurationable'
 require 'rack/request'
 
 module Surf
   class HttpRoute
-    extend Configuration
+    extend Configurationable
 
     def self.route
       raise 'Please, provide tuple where first value is method and second value' \
