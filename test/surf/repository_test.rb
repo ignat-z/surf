@@ -3,23 +3,13 @@
 require 'test_helper'
 require 'surf/repository'
 
-module Fake
-  class InitializerTest
-    def initialize(*args); end
-
-    def result
-      :called
-    end
-  end
-end
-
 describe Surf::Repository do
   subject do
     Surf::Repository
       .dup
       .configuration do |config|
         config.mapping = mapping
-        config.pull_request_class = Fake::InitializerTest
+        config.pull_request_class = FakeStore::InitializerTest
       end.new(webhook)
   end
 

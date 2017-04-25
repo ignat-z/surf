@@ -5,26 +5,10 @@ require 'surf/utils/http_route'
 require 'surf/utils/router'
 require 'rack/test'
 
-module Fake
-  class SimpleRoute < Surf::HttpRoute
-    cattr_accessor :route, ['GET', '/test1']
-    def call
-      response
-    end
-  end
-
-  class ComplexRouteWithMathcing < Surf::HttpRoute
-    cattr_accessor :route, ['GET', '/test2/:id/pattern/:name']
-    def call
-      response.tap { |r| r.body = [match[:id] + match[:name]] }
-    end
-  end
-end
-
 describe Surf::Router do
   include Rack::Test::Methods
 
-  let(:app) { Surf::Router.new([Fake::SimpleRoute, Fake::ComplexRouteWithMathcing]) }
+  let(:app) { Surf::Router.new([FakeStore::SimpleRoute, FakeStore::ComplexRouteWithMathcing]) }
 
   context 'when there is no any routing' do
     it 'return 404 code' do
