@@ -5,9 +5,6 @@ require 'surf/pull_request'
 
 describe Surf::PullRequest do
   module Fake
-    class Repo
-    end
-
     class ContentProvider
       def pull_request(_repo, _id)
         { a: { b: { c: 23 } } }
@@ -21,7 +18,7 @@ describe Surf::PullRequest do
       .configuration do |config|
         config.content_provider = Fake::ContentProvider
         config.mapping = mapping
-      end.new(Fake::Repo.new, 42)
+      end.new(Fake::Repo.new(nil), 42)
   end
 
   let(:webhook) { Fixtures.webhook_registration }

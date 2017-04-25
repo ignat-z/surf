@@ -2,29 +2,17 @@
 
 require 'rack/utils'
 require 'rack/request'
-require 'surf/utils/http_route'
+require 'surf/registry'
+require 'surf/utils/configurationable'
 require 'surf/utils/mappingable'
+require 'surf/utils/http_route'
 
 module Surf
-  class DefaultCallback
-    def initialize(context)
-      @context = context
-    end
-
-    def call
-      context.response
-    end
-
-    private
-
-    attr_reader :context
-  end
-
   class WebhookHandler < HttpRoute
     include Mappingable
     DEFAULT_ACTION = 'default'
     KEY_GENERATOR = ->(event, action) { [event, action].join('+') }
-    cattr_accessor :default_callback, DefaultCallback
+    cattr_accessor :default_callback, Surf::Registry.webhook_default_callback_class
     cattr_accessor :mapping, action: %w[action]
     cattr_accessor :callbacks, {}
     cattr_accessor :route, %w[POST /webhook]

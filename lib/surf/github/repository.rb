@@ -8,7 +8,6 @@ module Surf
     class Repository < Surf::Repository
       cattr_accessor :mapping, full_name:     %w[repository full_name],
                                id:            %w[repository id]
-      cattr_accessor :pull_request_class, Surf::Github::PullRequest
     end
   end
 end

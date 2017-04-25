@@ -2,13 +2,13 @@
 
 require 'json'
 require 'surf/utils/mappingable'
-require 'surf/pull_request'
+require 'surf/registry'
 
 module Surf
   class Repository
     include Mappingable
 
-    cattr_accessor :pull_request_class, Surf::PullRequest
+    cattr_accessor :pull_request_class, Surf::Registry.pull_request_class
 
     def initialize(webhook_body)
       @webhook_body = JSON.parse(webhook_body)
