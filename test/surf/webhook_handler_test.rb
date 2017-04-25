@@ -33,7 +33,7 @@ describe Surf::WebhookHandler do
   end
 
   class SimpleCallback
-    extend Configurationable
+    extend Configurable
     cattr_accessor :called, 0
     def initialize(context)
       @context = context

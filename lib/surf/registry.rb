@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
-require 'surf/utils/configurationable'
+require 'surf/utils/configurable'
 
 module Surf
   class Registry
-    extend Configurationable
+    extend Configurable
 
     cattr_accessor :pull_request_class
     cattr_accessor :repositroy_class

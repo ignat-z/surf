@@ -3,7 +3,7 @@
 require 'rack/utils'
 require 'rack/request'
 require 'surf/registry'
-require 'surf/utils/configurationable'
+require 'surf/utils/configurable'
 require 'surf/utils/mappingable'
 require 'surf/utils/http_route'
 

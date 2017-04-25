@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
-require 'surf/utils/configurationable'
+require 'surf/utils/configurable'
 
 module Mappingable
   def self.included(base)
-    base.extend Configurationable
+    base.extend Configurable
     base.cattr_accessor :mapping, {}
   end
 

@@ -1,11 +1,11 @@
 # frozen_string_literal: true
 
-require 'surf/utils/configurationable'
+require 'surf/utils/configurable'
 require 'surf/registry'
 
 module Surf
   class PingWebhookSaver
-    extend Configurationable
+    extend Configurable
 
     cattr_accessor :repositroy_class, Surf::Registry.repositroy_class
     cattr_accessor :storage
