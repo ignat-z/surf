@@ -21,4 +21,5 @@ task :console do |_t|
   binding.pry
 end
 
-task default: [:test, :rubocop]
+default_tasks = ENV['FULL'].nil? ? [:test] : [:test, :rubocop]
+task default: default_tasks

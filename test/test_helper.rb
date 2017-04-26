@@ -1,9 +1,11 @@
 # frozen_string_literal: true
 
 require 'simplecov'
-SimpleCov.start do
-  add_filter 'test/'
-  add_filter 'vendor/'
+unless ENV['FULL'].nil?
+  SimpleCov.start do
+    add_filter 'test/'
+    add_filter 'vendor/'
+  end
 end
 
 $LOAD_PATH.unshift File.expand_path('../../lib', __FILE__)
