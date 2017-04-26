@@ -1,5 +1,11 @@
 # frozen_string_literal: true
 
+Lazy = Struct.new(:value) do
+  def cast
+    value.call
+  end
+end
+
 module Configurable
   def configuration
     yield self
@@ -17,7 +23,8 @@ module Configurable
 
   def define_cattr_reader(name)
     define_class_method name do
-      class_variable_get("@@#{name}")
+      result = class_variable_get("@@#{name}")
+      result.is_a?(Lazy) ? result.cast : result
     end
   end
 

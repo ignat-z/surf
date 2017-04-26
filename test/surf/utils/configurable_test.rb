@@ -9,11 +9,12 @@ describe Configurable do
 
     cattr_accessor :simple_setting
     cattr_accessor :setting_with_default, 42
+    cattr_accessor :lazy_value, Lazy.new(-> { raise(ArgumentError) })
   end
 
   it 'defines class variables with curresponding default values' do
     assert_equal ExtendableClass.class_variables,
-                 %i[@@simple_setting @@setting_with_default]
+                 %i[@@simple_setting @@setting_with_default @@lazy_value]
   end
 
   it 'defines reader methods for extended class' do
@@ -34,5 +35,9 @@ describe Configurable do
 
     assert_equal ExtendableClass.setting_with_default, 29
     assert_equal ExtendableClass.simple_setting, :value
+  end
+
+  it 'allows to set lazy values by wrapping it with lazy and lambda' do
+    assert_raises(ArgumentError) { ExtendableClass.lazy_value }
   end
 end
