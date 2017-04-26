@@ -9,7 +9,7 @@ module Surf
     extend Configurable
     include StringUtils
 
-    cattr_accessor :redis, (Lazy.new { Registry.redis })
+    cattr_accessor(:redis) { Registry.redis }
 
     def save(id:, value:)
       self.class.redis.hset(storage_key, id, value)

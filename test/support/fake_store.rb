@@ -41,14 +41,14 @@ module FakeStore
   end
 
   class SimpleRoute < Surf::HttpRoute
-    cattr_accessor :route, ['GET', '/test1']
+    cattr_accessor(:route, ['GET', '/test1'])
     def call
       response
     end
   end
 
   class ComplexRouteWithMathcing < Surf::HttpRoute
-    cattr_accessor :route, ['GET', '/test2/:id/pattern/:name']
+    cattr_accessor(:route, ['GET', '/test2/:id/pattern/:name'])
     def call
       response.tap { |r| r.body = [match[:id] + match[:name]] }
     end

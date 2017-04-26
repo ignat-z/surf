@@ -20,12 +20,15 @@ module Surf
       end
     end
 
-    cattr_accessor :attributes, [
-      config(:host, default: 'localhost'),
-      config(:port, default: 9001),
-      config(:redis_url, default: 'redis://127.0.0.1:6379/1'),
-      config(:logger, default: default_logger)
-    ]
+    cattr_accessor(
+      :attributes,
+      [
+        config(:host, default: 'localhost'),
+        config(:port, default: 9001),
+        config(:redis_url, default: 'redis://127.0.0.1:6379/1'),
+        config(:logger, default: default_logger)
+      ]
+    )
     attr_accessor(*attributes.map(&:name))
 
     def initialize

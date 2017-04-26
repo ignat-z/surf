@@ -7,9 +7,9 @@ describe Configurable do
   class ExtendableClass
     extend Configurable
 
-    cattr_accessor :simple_setting
-    cattr_accessor :setting_with_default, 42
-    cattr_accessor :lazy_value, (Lazy.new { raise(ArgumentError) })
+    cattr_accessor(:simple_setting)
+    cattr_accessor(:setting_with_default, 42)
+    cattr_accessor(:lazy_value) { raise(ArgumentError) }
   end
 
   it 'defines class variables with curresponding default values' do

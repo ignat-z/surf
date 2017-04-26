@@ -13,11 +13,11 @@ module Surf
     include Mappingable
     DEFAULT_ACTION = 'default'
     KEY_GENERATOR = ->(event, action) { [event, action].join('+') }
-    cattr_accessor :default_callback, (Lazy.new { Surf::Registry.webhook_default_callback_class })
-    cattr_accessor :mapping, action: %w[action]
-    cattr_accessor :callbacks, {}
-    cattr_accessor :route, %w[POST /webhook]
-    cattr_accessor :secret, ENV['GITHUB_SECRET_TOKEN']
+    cattr_accessor(:default_callback) { Surf::Registry.webhook_default_callback_class }
+    cattr_accessor(:mapping, action: %w[action])
+    cattr_accessor(:callbacks, {})
+    cattr_accessor(:route, %w[POST /webhook])
+    cattr_accessor(:secret, ENV['GITHUB_SECRET_TOKEN'])
 
     attr_reader :raw_body
 

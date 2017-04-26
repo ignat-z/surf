@@ -9,7 +9,7 @@ module Surf
     class ContentProvider < Surf::ContentProvider
       extend Configurable
 
-      cattr_accessor :client, Octokit::Client.new(access_token: ENV['GITHUB_TOKEN'])
+      cattr_accessor(:client) { Octokit::Client.new(access_token: ENV['GITHUB_TOKEN']) }
 
       def pull_request(repository, id)
         self.class.client.pull_request(repository.full_name, id)
