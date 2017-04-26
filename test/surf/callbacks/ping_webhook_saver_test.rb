@@ -9,7 +9,7 @@ describe Surf::PingWebhookSaver do
       .dup
       .configuration do |config|
         config.storage = FakeStore::Storage.new
-        config.repositroy_class = FakeStore::Repo
+        config.repository_class = FakeStore::Repo
       end.new(FakeStore::Context.new)
   end
 

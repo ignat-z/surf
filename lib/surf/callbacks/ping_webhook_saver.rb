@@ -7,7 +7,7 @@ module Surf
   class PingWebhookSaver
     extend Configurable
 
-    cattr_accessor :repositroy_class, Surf::Registry.repositroy_class
+    cattr_accessor :repository_class, Surf::Registry.repository_class
     cattr_accessor :storage
 
     def initialize(context)
@@ -15,7 +15,7 @@ module Surf
     end
 
     def call
-      repository = self.class.repositroy_class.new(context.raw_body)
+      repository = self.class.repository_class.new(context.raw_body)
       self.class.storage.save(id: repository.id, value: context.raw_body)
     end
 
