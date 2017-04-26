@@ -9,7 +9,7 @@ module Surf
     extend Configurable
     include Mappingable
 
-    cattr_accessor :content_provider, Lazy.new(-> { Surf::Registry.content_provider })
+    cattr_accessor :content_provider, (Lazy.new { Surf::Registry.content_provider })
 
     def initialize(repository, id)
       @repository = repository

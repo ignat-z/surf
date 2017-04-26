@@ -13,7 +13,7 @@ module Surf
     include Mappingable
     DEFAULT_ACTION = 'default'
     KEY_GENERATOR = ->(event, action) { [event, action].join('+') }
-    cattr_accessor :default_callback, Lazy.new(-> { Surf::Registry.webhook_default_callback_class })
+    cattr_accessor :default_callback, (Lazy.new { Surf::Registry.webhook_default_callback_class })
     cattr_accessor :mapping, action: %w[action]
     cattr_accessor :callbacks, {}
     cattr_accessor :route, %w[POST /webhook]

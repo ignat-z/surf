@@ -1,8 +1,12 @@
 # frozen_string_literal: true
 
-Lazy = Struct.new(:value) do
+class Lazy
+  def initialize(&block)
+    @block = block
+  end
+
   def cast
-    value.call
+    @block.call
   end
 end
 

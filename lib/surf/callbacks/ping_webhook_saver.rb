@@ -8,7 +8,7 @@ module Surf
   class PingWebhookSaver
     extend Configurable
 
-    cattr_accessor :repository_class, Lazy.new(-> { Surf::Registry.repository_class })
+    cattr_accessor :repository_class, (Lazy.new { Surf::Registry.repository_class })
     cattr_accessor :storage, Surf::WebhookStorage.new
 
     def initialize(context)
