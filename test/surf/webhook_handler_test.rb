@@ -13,7 +13,7 @@ describe Surf::WebhookHandler do
       'rack.input' => StringIO.new(webhook),
       'REQUEST_METHOD' => 'POST',
       'HTTP_X_GITHUB_EVENT' => 'ping',
-      'HTTP_X_HUB_SIGNATURE' => 'sha1=03a5a335a3e0c2b927229092ef27ad2aa29f8053'
+      'HTTP_X_HUB_SIGNATURE' => 'sha1=f2312c549bf523dc66c1cbff319c02048f5d534c'
     }
   end
 

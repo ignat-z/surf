@@ -8,7 +8,17 @@ module Surf
   class Repository
     include Mappingable
 
-    cattr_accessor :pull_request_class, Surf::Registry.pull_request_class
+    cattr_accessor :pull_request_class, Lazy.new(-> { Surf::Registry.pull_request_class })
+    cattr_accessor :webhook_storage, Surf::WebhookStorage.new
+
+    def self.all
+      webhook_storage.all.map { |webhook_body| new(webhook_body) }
+    end
+
+    def self.find(id)
+      webhook_body = webhook_storage.find(id: id)
+      new(webhook_body)
+    end
 
     def initialize(webhook_body)
       @webhook_body = JSON.parse(webhook_body)

@@ -3,6 +3,9 @@
 require 'surf/utils/http_route'
 
 module FakeStore
+  REPOSITORY_ID = 27
+  REPOSITORY_DESCRIPTION = { repository: { id: REPOSITORY_ID } }.freeze
+
   class Repo
     def initialize(_); end
 
@@ -13,19 +16,19 @@ module FakeStore
 
   class Context
     def raw_body
-      { repository: { id: 27 } }.to_json
+      REPOSITORY_DESCRIPTION.to_json
     end
   end
 
   class ContentProvider
     def pull_request(_repo, _id)
-      { a: { b: { c: 27 } } }
+      { a: { b: { c: REPOSITORY_ID } } }
     end
   end
 
   class Storage
     def save(id:, value:)
-      value && (id == 27)
+      value && (id == REPOSITORY_ID)
     end
   end
 
@@ -48,6 +51,16 @@ module FakeStore
     cattr_accessor :route, ['GET', '/test2/:id/pattern/:name']
     def call
       response.tap { |r| r.body = [match[:id] + match[:name]] }
+    end
+  end
+
+  class WebhookStorage
+    def all
+      [REPOSITORY_DESCRIPTION.to_json]
+    end
+
+    def find(*)
+      REPOSITORY_DESCRIPTION.to_json
     end
   end
 end

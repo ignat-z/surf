@@ -1,14 +1,15 @@
 # frozen_string_literal: true
 
 require 'surf/utils/configurable'
+require 'surf/storages/webhook_storage'
 require 'surf/registry'
 
 module Surf
   class PingWebhookSaver
     extend Configurable
 
-    cattr_accessor :repository_class, Surf::Registry.repository_class
-    cattr_accessor :storage
+    cattr_accessor :repository_class, Lazy.new(-> { Surf::Registry.repository_class })
+    cattr_accessor :storage, Surf::WebhookStorage.new
 
     def initialize(context)
       @context = context
