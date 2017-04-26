@@ -10,5 +10,6 @@ module Surf
     cattr_accessor :repositroy_class
     cattr_accessor :content_provider
     cattr_accessor :webhook_default_callback_class
+    cattr_accessor :redis
   end
 end
