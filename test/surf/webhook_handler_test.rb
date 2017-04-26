@@ -19,7 +19,7 @@ describe Surf::WebhookHandler do
 
   context 'with invalid signature' do
     subject do
-      Surf::WebhookHandler.configuration do |config|
+      Surf::WebhookHandler.dup.configuration do |config|
         config.secret = invalid_secret
       end.new(env, {})
     end
@@ -29,6 +29,20 @@ describe Surf::WebhookHandler do
 
       refute result.ok?
       assert_equal result.status, 500
+    end
+  end
+
+  context 'without any callback on action' do
+    subject do
+      Surf::WebhookHandler.dup.configuration do |config|
+        config.secret = secret
+        config.callbacks = {}
+      end.new(env, {})
+    end
+
+    it 'uses default action and return success response' do
+      result = subject.call
+      assert result.ok?
     end
   end
 
@@ -45,18 +59,22 @@ describe Surf::WebhookHandler do
     end
   end
 
-  subject do
-    klass = Surf::WebhookHandler.dup.configuration do |config|
-      config.secret = secret
-      config.default_callback = SimpleCallback
-    end
-    klass.add_callback(event: 'ping', callback: SimpleCallback)
-    klass.new(env, {})
-  end
+  context 'when mapping contains callback on cation' do
+    let(:callback) { SimpleCallback.dup }
 
-  it 'calls passed callbacks and default callback' do
-    result = subject.call
-    result.status
-    assert_equal 2, SimpleCallback.called
+    subject do
+      klass = Surf::WebhookHandler.dup.configuration do |config|
+        config.secret = secret
+        config.default_callback = callback
+      end
+      klass.add_callback(event: 'ping', callback: callback)
+      klass.new(env, {})
+    end
+
+    it 'calls passed callbacks and default callback' do
+      result = subject.call
+      result.status
+      assert_equal 2, callback.called
+    end
   end
 end
