@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 
-require 'surf/github/pull_request'
 require 'surf/repository'
 
 module Surf
