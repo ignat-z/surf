@@ -1,0 +1,10 @@
+#!/usr/bin/env ruby
+
+require 'bundler/setup'
+require 'surf'
+require 'surf/cli'
+
+Surf::CLI.start
+
+require "pry"
+Pry.start

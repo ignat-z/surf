@@ -21,7 +21,7 @@ module Surf
     cattr_accessor(:mapping, action: %w[action])
     cattr_accessor(:callbacks, {})
     cattr_accessor(:route, %w[POST /webhook])
-    cattr_accessor(:secret, ENV['GITHUB_SECRET_TOKEN'])
+    cattr_accessor(:secret) { ENV['GITHUB_SECRET_TOKEN'] }
 
     attr_reader :raw_body
 
