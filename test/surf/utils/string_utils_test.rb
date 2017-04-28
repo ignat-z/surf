@@ -21,6 +21,12 @@ describe StringUtils do
     end
   end
 
+  context '#camelize' do
+    it 'camelize module/snake_case_word' do
+      assert_equal 'Module::SnakeCaseWord', subject.camelize('module/snake_case_word')
+    end
+  end
+
   context '#underscore' do
     it 'underscores cameCasedWord' do
       assert_equal 'a/b/idd_qd', subject.underscore('A::B::IddQd')

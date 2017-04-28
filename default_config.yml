@@ -1,0 +1,20 @@
+surf:
+  adapter: surf/adapters/github
+  application:
+    host: localhost
+    port: 9001
+    redis_url: redis://127.0.0.1:6379/1
+  endpoints:
+    - surf/webhook_handler
+  webhook_callbacks:
+    - event: ping
+      callback: surf/ping_webhook_saver
+    - event: pull_request
+      action: closed
+      callback: surf/pull_request_logger
+    - event: pull_request
+      action: opened
+      callback: surf/pull_request_logger
+    - event: pull_request
+      action: reopened
+      callback: surf/pull_request_logger

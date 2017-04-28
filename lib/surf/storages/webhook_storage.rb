@@ -9,7 +9,7 @@ module Surf
     extend Configurable
     include StringUtils
 
-    cattr_accessor(:redis) { Registry.redis }
+    cattr_accessor(:redis) { Surf.redis }
 
     def save(id:, value:)
       self.class.redis.hset(storage_key, id, value)

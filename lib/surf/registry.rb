@@ -10,6 +10,5 @@ module Surf
     cattr_accessor(:pull_request_webhook_class)
     cattr_accessor(:repository_class)
     cattr_accessor(:content_provider)
-    cattr_accessor(:redis)
   end
 end

@@ -1,10 +1,14 @@
 # frozen_string_literal: true
 
 require 'rack'
+require 'surf/utils/configurable'
 
 module Surf
   class Router
-    def initialize(routes = [])
+    extend Configurable
+
+    cattr_accessor(:default_routes) { [] }
+    def initialize(routes = self.class.default_routes)
       @routes = routes
     end
 

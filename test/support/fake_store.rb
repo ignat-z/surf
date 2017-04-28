@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require 'surf/utils/http_route'
+require 'surf/utils/configurable'
 
 module FakeStore
   REPOSITORY_ID = 27
@@ -61,6 +62,30 @@ module FakeStore
 
     def find(*)
       REPOSITORY_DESCRIPTION.to_json
+    end
+  end
+
+  class Application
+    attr_accessor :key_1, :key_2
+    attr_accessor :default_routes
+    attr_accessor :callbacks
+
+    def add_callback(args)
+      @callbacks ||= []
+      @callbacks << args
+    end
+
+    def configure
+      yield self
+    end
+  end
+
+  class Myhub
+    extend Configurable
+    cattr_accessor(:called)
+
+    def build!
+      self.class.called = :called
     end
   end
 end

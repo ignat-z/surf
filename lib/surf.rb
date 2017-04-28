@@ -2,6 +2,7 @@
 
 require 'forwardable'
 require 'puma'
+require 'redis'
 
 require 'surf/utils/router'
 require 'surf/configuration'
@@ -32,6 +33,10 @@ module Surf
     def handle_error(exception)
       Surf.logger.fatal(exception)
       abort
+    end
+
+    def redis
+      @redis ||= Redis.new(redis_url: Surf.redis_url)
     end
 
     def configure

@@ -3,6 +3,10 @@
 require 'openssl'
 require 'rack/utils'
 require 'rack/request'
+
+require 'surf/callbacks/ping_webhook_saver'
+require 'surf/callbacks/pull_request_change_logger'
+
 require 'surf/registry'
 require 'surf/callbacks/default_callback'
 require 'surf/utils/configurable'
