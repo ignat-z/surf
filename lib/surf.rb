@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+require 'i18n'
 require 'forwardable'
 require 'puma'
 require 'redis'
@@ -15,6 +16,7 @@ module Surf
 
   class << self
     def run
+      load_locales
       app = Surf::Router.new([Surf::WebhookHandler])
       @server_thread = Thread.new { run_app(app) }
       @server_thread.abort_on_exception = true
@@ -33,6 +35,10 @@ module Surf
     def handle_error(exception)
       Surf.logger.fatal(exception)
       abort
+    end
+
+    def load_locales
+      I18n.load_path = Dir['./config/locales/*.{rb,yml}']
     end
 
     def redis
