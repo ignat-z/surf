@@ -4,11 +4,12 @@ require 'openssl'
 require 'rack/utils'
 require 'rack/request'
 
+require 'surf/callbacks/default_callback'
 require 'surf/callbacks/ping_webhook_saver'
 require 'surf/callbacks/pull_request_change_logger'
 
 require 'surf/registry'
-require 'surf/callbacks/default_callback'
+
 require 'surf/utils/configurable'
 require 'surf/utils/mappingable'
 require 'surf/utils/http_route'
@@ -17,8 +18,6 @@ module Surf
   class WebhookHandler < HttpRoute
     include Mappingable
     DEFAULT_ACTION   = 'default'
-    ERROR_SIGNATURE  = 'Request signature mismatch'
-    WARN_TEMPLATE    = "Can't find any non-default callback in mapping for %s. Just Smile and Wave"
     KEY_GENERATOR    = ->(event, action) { [event, action].join('+') }
 
     cattr_accessor(:default_callback, Surf::DefaultCallback)
@@ -45,7 +44,7 @@ module Surf
 
     def callbacks
       self.class.callbacks.fetch(action_key) do
-        Surf.logger.warn(WARN_TEMPLATE % action_key)
+        Surf.logger.warn(I18n.t('surf.webhooks.no_callback') % action_key)
         [self.class.default_callback]
       end
     end
@@ -55,7 +54,7 @@ module Surf
     end
 
     def invalid_sender_response
-      Surf.logger.error(ERROR_SIGNATURE)
+      Surf.logger.error(I18n.t('surf.webhooks.error_signature'))
       response.tap do |r|
         r.status = 500
         r.body = 'Invalid sender'

@@ -17,7 +17,7 @@ module Surf
 
     def self.find(id)
       webhook_body = webhook_storage.find(id: id)
-      raise "Can't find registered repository. Did you send ping webhook?" if webhook_body.nil?
+      raise I18n.t('surf.webhooks.missed_webhook') if webhook_body.nil?
       new(webhook_body)
     end
 

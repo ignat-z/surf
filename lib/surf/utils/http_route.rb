@@ -8,8 +8,7 @@ module Surf
     extend Configurable
 
     def self.route
-      raise 'Please, provide tuple where first value is method and second value' \
-            "is path.\nExample: ['GET', '/route1/:id']\nFrom: `#{name}.route`."
+      raise(I18n.t('surf.routes.no_mapping') % name)
     end
 
     attr_reader :match, :request, :response
