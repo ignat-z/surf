@@ -5,18 +5,20 @@ require 'forwardable'
 require 'puma'
 require 'redis'
 
+require 'surf/utils/translation'
 require 'surf/utils/router'
 require 'surf/configuration'
 require 'surf/webhook_handler'
 require 'surf/version'
 
 module Surf
-  extend SingleForwardable
-  def_delegators :configuration, *Configuration.attributes.map(&:name)
-
   class << self
+    extend Forwardable
+    extend Translation
+
+    def_delegators :configuration, *Configuration.attributes.map(&:name)
+
     def run
-      load_locales
       app = Surf::Router.new([Surf::WebhookHandler])
       @server_thread = Thread.new { run_app(app) }
       @server_thread.abort_on_exception = true
@@ -35,10 +37,6 @@ module Surf
     def handle_error(exception)
       Surf.logger.fatal(exception)
       abort
-    end
-
-    def load_locales
-      I18n.load_path = Dir['./config/locales/*.{rb,yml}']
     end
 
     def redis
