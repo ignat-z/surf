@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 require 'surf/utils/http_route'
-require 'surf/utils/configurable'
 
 module FakeStore
   REPOSITORY_ID = 27

@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 
-require 'surf/utils/configurable'
 require 'surf/storages/webhook_storage'
 require 'surf/registry'
 

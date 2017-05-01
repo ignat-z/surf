@@ -4,8 +4,10 @@ require 'forwardable'
 require 'puma'
 require 'redis'
 
+require 'surf/utils/configurable'
 require 'surf/utils/translation'
 require 'surf/utils/router'
+
 require 'surf/configuration'
 require 'surf/webhook_handler'
 require 'surf/version'

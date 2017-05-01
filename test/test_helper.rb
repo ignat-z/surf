@@ -10,6 +10,7 @@ end
 
 $LOAD_PATH.unshift File.expand_path('../../lib', __FILE__)
 require 'surf'
+require 'pry'
 
 Dir['test/support/**/*.rb'].each { |f| require f.sub('test/', '') }
 

@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 require 'logger'
-require 'surf/utils/configurable'
 
 module Surf
   class Configuration

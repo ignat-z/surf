@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'surf/utils/configurable'
-
 module Mappingable
   def self.included(base)
     base.extend Configurable

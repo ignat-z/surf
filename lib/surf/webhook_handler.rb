@@ -10,7 +10,6 @@ require 'surf/callbacks/pull_request_change_logger'
 
 require 'surf/registry'
 
-require 'surf/utils/configurable'
 require 'surf/utils/mappingable'
 require 'surf/utils/http_route'
 

@@ -3,7 +3,6 @@
 require 'ostruct'
 require 'yaml'
 
-require 'surf/utils/configurable'
 require 'surf/utils/string_utils'
 
 require 'surf/adapters/github'

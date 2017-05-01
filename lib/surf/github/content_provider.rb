@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 require 'octokit'
-require 'surf/utils/configurable'
 require 'surf/content_provider'
 
 module Surf
