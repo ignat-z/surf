@@ -14,9 +14,12 @@ YAML_CONFIG = <<~CONFIGURATION
     webhook_callbacks:
     - event: pull_request
       action: closed
-      callback: surf/config_builder
+      callbacks:
+        - surf/config_builder
+        - surf
     - event: ping
-      callback: surf
+      callbacks:
+        - surf
 CONFIGURATION
 
 describe Surf::ConfigBuilder do
@@ -46,6 +49,7 @@ describe Surf::ConfigBuilder do
   it 'returns casted callbacks settings' do
     assert_equal [
       { "event": 'pull_request', "action": 'closed', "callback": Surf::ConfigBuilder },
+      { "event": 'pull_request', "action": 'closed', "callback": Surf },
       { "event": 'ping', "callback": Surf }
     ], application.callbacks
   end

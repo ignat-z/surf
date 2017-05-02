@@ -48,7 +48,7 @@ module Surf
     end
 
     def configure_callbacks
-      callbacks = fetch_key('webhook_callbacks').map { |info| process_callback_info(info) }
+      callbacks = fetch_key('webhook_callbacks').flat_map { |info| process_callback_info(info) }
       callbacks.each { |callback| self.class.webhook_handler.add_callback(callback) }
     end
 
@@ -56,11 +56,13 @@ module Surf
       @parsed_body.fetch(name)
     end
 
-    def process_callback_info(callback)
-      {}.tap do |record|
-        record[:event] = callback.fetch('event')
-        record[:action] = callback['action'] if callback['action']
-        record[:callback] = cast_string_to_class(callback.fetch('callback'))
+    def process_callback_info(event_description)
+      event_description.fetch('callbacks').map do |callback|
+        {}.tap do |record|
+          record[:event] = event_description.fetch('event')
+          record[:action] = event_description['action'] if event_description['action']
+          record[:callback] = cast_string_to_class(callback)
+        end
       end
     end
 

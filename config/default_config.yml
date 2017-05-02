@@ -8,13 +8,17 @@ surf:
     - surf/webhook_handler
   webhook_callbacks:
     - event: ping
-      callback: surf/ping_webhook_saver
+      callbacks:
+        - surf/ping_webhook_saver
     - event: pull_request
       action: closed
-      callback: surf/pull_request_logger
+      callbacks:
+        - surf/pull_request_logger
     - event: pull_request
       action: opened
-      callback: surf/pull_request_logger
+      callbacks:
+        - surf/pull_request_logger
     - event: pull_request
       action: reopened
-      callback: surf/pull_request_logger
+      callbacks:
+        - surf/pull_request_logger

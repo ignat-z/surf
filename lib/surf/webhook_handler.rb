@@ -36,12 +36,12 @@ module Surf
     def call
       parse_body
       return invalid_sender_response unless valid_sender?
-      callbacks.map { |callback| callback.new(self).call }.last
+      fetch_callbacks.map { |callback| callback.new(self).call }.last
     end
 
     private
 
-    def callbacks
+    def fetch_callbacks
       self.class.callbacks.fetch(action_key) do
         Surf.logger.warn(I18n.t('surf.webhooks.no_callback') % action_key)
         [self.class.default_callback]
