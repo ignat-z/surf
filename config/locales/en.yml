@@ -4,6 +4,7 @@ en:
       error_signature: Request signature mismatch
       no_callback: Can't find any non-default callback in mapping for %s. Just Smile and Wave
       missed_webhook: Can't find registered repository. Did you send ping webhook?
+      catched: Catched by Surf
     routes:
       no_mapping: >-
         Please, provide tuple where first value is method and second value is path.

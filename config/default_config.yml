@@ -18,6 +18,7 @@ surf:
       action: opened
       callbacks:
         - surf/pull_request_logger
+        - surf/open_pull_request_notifier
     - event: pull_request
       action: reopened
       callbacks:

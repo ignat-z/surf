@@ -15,7 +15,7 @@ module Surf
     end
 
     def comment(text, strategy: STRATEGIES.first)
-      raise 'Unknown messagin strategy' unless STRATEGIES.include?(strategy)
+      raise 'Unknown messaging strategy' unless STRATEGIES.include?(strategy)
       method(strategy).call(text)
     end
 

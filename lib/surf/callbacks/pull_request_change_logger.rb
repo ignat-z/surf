@@ -10,18 +10,22 @@ module Surf
 
     def initialize(context)
       @context = context
+      @webhook = find_webhook
     end
 
     def call
-      webhook = self.class.pull_request_webhook_class.new(context.raw_body)
-      Surf.logger.info(pull_request_info(webhook))
+      Surf.logger.info(pull_request_info)
     end
 
     private
 
-    attr_reader :context
+    attr_reader :context, :webhook
 
-    def pull_request_info(webhook)
+    def find_webhook
+      self.class.pull_request_webhook_class.new(context.raw_body)
+    end
+
+    def pull_request_info
       "#{webhook.repository.full_name}##{webhook.pull_request.number}" \
         " was #{webhook.action} by #{webhook.sender_login}" \
         ", current state: #{webhook.pull_request.state}"
