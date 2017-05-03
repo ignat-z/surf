@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require 'surf/github/issue_messenger'
-require 'surf/callbacks/pull_request_change_logger'
+require 'surf/callbacks/pull_request_logger'
 
 module Surf
   class OpenPullRequestNotifier < PullRequestLogger

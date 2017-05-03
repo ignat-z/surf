@@ -6,7 +6,7 @@ require 'rack/request'
 
 require 'surf/callbacks/default_callback'
 require 'surf/callbacks/ping_webhook_saver'
-require 'surf/callbacks/pull_request_change_logger'
+require 'surf/callbacks/pull_request_logger'
 require 'surf/callbacks/open_pull_request_notifier'
 
 require 'surf/registry'
