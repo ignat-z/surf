@@ -10,6 +10,8 @@ require 'surf/utils/router'
 
 require 'surf/configuration'
 require 'surf/webhook_handler'
+require 'surf/home_page'
+require 'surf/auth_callback'
 require 'surf/version'
 
 module Surf
@@ -20,7 +22,7 @@ module Surf
     def_delegators :configuration, *Configuration.attributes.map(&:name)
 
     def run
-      app = Surf::Router.new([Surf::WebhookHandler])
+      app = Surf::Router.new
       @server_thread = Thread.new { run_app(app) }
       @server_thread.abort_on_exception = true
     end

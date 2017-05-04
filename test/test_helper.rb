@@ -14,6 +14,8 @@ require 'pry'
 
 Dir['test/support/**/*.rb'].each { |f| require f.sub('test/', '') }
 
+ENV['COOKIE_SECRET'] = 'secret'
+
 require 'minitest/autorun'
 require 'minitest/pride'
 require 'minitest/mock'

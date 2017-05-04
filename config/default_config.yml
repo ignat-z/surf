@@ -5,7 +5,9 @@ surf:
     port: 9001
     redis_url: redis://127.0.0.1:6379/1
   endpoints:
+    - surf/auth_callback
     - surf/webhook_handler
+    - surf/home_page
   webhook_callbacks:
     - event: ping
       callbacks:
