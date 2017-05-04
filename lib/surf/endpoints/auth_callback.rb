@@ -6,8 +6,7 @@ module Surf
 
     def call
       request.session[:user] = request.env['omniauth.auth'] if request.env['omniauth.auth']
-      response.redirect('/home')
-      response
+      redirect('/home')
     end
   end
 end

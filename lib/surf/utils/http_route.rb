@@ -27,5 +27,15 @@ module Surf
     def call
       raise
     end
+
+    private
+
+    def redirect(path)
+      response.tap { |r| r.redirect(path) }
+    end
+
+    def authenticated?
+      !request.session[:user].nil?
+    end
   end
 end

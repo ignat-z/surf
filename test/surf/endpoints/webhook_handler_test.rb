@@ -2,7 +2,7 @@
 
 require 'test_helper'
 require 'rack/test'
-require 'surf/webhook_handler'
+require 'surf/endpoints/webhook_handler'
 
 describe Surf::WebhookHandler do
   let(:webhook) { Fixtures.webhook_registration }

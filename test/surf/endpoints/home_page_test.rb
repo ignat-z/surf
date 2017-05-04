@@ -2,7 +2,7 @@
 
 require 'test_helper'
 require 'rack/test'
-require 'surf/home_page'
+require 'surf/endpoints/home_page'
 
 describe Surf::HomePage do
   let(:env) do

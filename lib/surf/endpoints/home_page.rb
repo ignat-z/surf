@@ -46,14 +46,10 @@ module Surf
     cattr_accessor(:route, %w[GET /home])
 
     def call
-      return response.tap { |r| r.redirect('/auth/github') } unless authenticated?
+      return redirect('/auth/github') unless authenticated?
       response.body = [ERB.new(TEMPLATE).result(binding)]
       response[Rack::CONTENT_TYPE] = 'text/html; charset=UTF-8'
       response
-    end
-
-    def authenticated?
-      !request.session[:user].nil?
     end
   end
 end

@@ -9,9 +9,11 @@ require 'surf/utils/translation'
 require 'surf/utils/router'
 
 require 'surf/configuration'
-require 'surf/webhook_handler'
-require 'surf/home_page'
-require 'surf/auth_callback'
+
+require 'surf/endpoints/webhook_handler'
+require 'surf/endpoints/home_page'
+require 'surf/endpoints/auth_callback'
+
 require 'surf/version'
 
 module Surf
