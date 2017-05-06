@@ -5,6 +5,7 @@ require 'rack/test'
 require 'surf/endpoints/home_page'
 
 describe Surf::HomePage do
+  let(:template) { "Hello, <%= request.session[:user].dig('info', 'name') %>" }
   let(:env) do
     {
       'REQUEST_METHOD' => 'GET',
@@ -15,7 +16,9 @@ describe Surf::HomePage do
   end
 
   subject do
-    Surf::HomePage.dup.new(env)
+    Surf::HomePage.dup.tap do |config|
+      config.template = template
+    end.new(env)
   end
 
   it 'calls home page processor' do
