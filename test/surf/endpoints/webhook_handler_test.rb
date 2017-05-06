@@ -2,7 +2,7 @@
 
 require 'test_helper'
 require 'rack/test'
-require 'surf/webhook_handler'
+require 'surf/endpoints/webhook_handler'
 
 describe Surf::WebhookHandler do
   let(:webhook) { Fixtures.webhook_registration }
@@ -12,6 +12,7 @@ describe Surf::WebhookHandler do
     {
       'rack.input' => StringIO.new(webhook),
       'REQUEST_METHOD' => 'POST',
+      'PATH_INFO' => '/webhook',
       'HTTP_X_GITHUB_EVENT' => 'ping',
       'HTTP_X_HUB_SIGNATURE' => 'sha1=f2312c549bf523dc66c1cbff319c02048f5d534c'
     }
@@ -21,7 +22,7 @@ describe Surf::WebhookHandler do
     subject do
       Surf::WebhookHandler.dup.configuration do |config|
         config.secret = invalid_secret
-      end.new(env, {})
+      end.new(env)
     end
 
     it 'return 500 error if webhook does not have valid signature' do
@@ -37,7 +38,7 @@ describe Surf::WebhookHandler do
       Surf::WebhookHandler.dup.configuration do |config|
         config.secret = secret
         config.callbacks = {}
-      end.new(env, {})
+      end.new(env)
     end
 
     it 'uses default action and return success response' do
@@ -68,7 +69,7 @@ describe Surf::WebhookHandler do
         config.default_callback = callback
       end
       klass.add_callback(event: 'ping', callback: callback)
-      klass.new(env, {})
+      klass.new(env)
     end
 
     it 'calls passed callbacks and default callback' do
