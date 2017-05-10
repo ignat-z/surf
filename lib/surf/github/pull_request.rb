@@ -8,7 +8,7 @@ module Surf
     class PullRequest < Surf::PullRequest
       extend Forwardable
 
-      def_delegators :info, :number, :state, :title
+      def_delegators :info, :number, :state, :title, :head
 
       private
 

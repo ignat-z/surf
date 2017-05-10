@@ -19,6 +19,7 @@ surf:
     - event: pull_request
       action: opened
       callbacks:
+        - surf/pr_pair
         - surf/pull_request_logger
         - surf/open_pull_request_notifier
     - event: pull_request
