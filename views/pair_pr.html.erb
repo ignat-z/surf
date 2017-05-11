@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html>
   <head>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/awesomplete/1.1.1/awesomplete.min.js"></script>
@@ -8,53 +9,53 @@
         background-color: #f1f1f1;
         font-family: 'Lato', Arial, sans-serif;
       }
+      .center {
+        margin-left:auto;
+        margin-right:auto;
+        width:27.85em;
+      }
+      .logo {
+        font-size: 7em;
+        text-align: center;
+        padding-top: 7rem;
+        padding-bottom: 0rem;
+        margin-bottom: 1rem;
+      }
       .awesomplete input {
-        padding: .2em 1.5em;
+        padding: .4em 1.5em;
         font-size: 1.2em;
         width: 20em;
       }
       .awesomplete li {
         font-size: 1.3em;
       }
-/*      .dropdown-btn {
-        padding: 1.5em 1.5em;
-      }*/
     </style>
   </head>
   <body>
 
     <p class="logo">🏄</p>
-    <% if pair %>
-      <%= uniq_id %> -> <%= pair %>
-    <% else %>
-      No pair
-    <% end %>
 
-    <br/>
-    <br/>
-
-<input data-list='<%= pull_requests.join(", ") %>' class="dropdown-input" />
-<!-- <button class="dropdown-btn" type="button"><span class="caret"></span></button> -->
+    <div class="center">
+      <input data-list='<%= pull_requests.join(", ") %>' class="dropdown-input" />
+    </div>
 
     <script>
+      var comboplete = new Awesomplete('input.dropdown-input', {
+        minChars: 0,
+      });
 
-var comboplete = new Awesomplete('input.dropdown-input', {
-  minChars: 0,
-});
-
-Awesomplete.$('.dropdown-input').addEventListener("click", function() {
-  if (comboplete.ul.childNodes.length === 0) {
-    comboplete.minChars = 0;
-    comboplete.evaluate();
-  }
-  else if (comboplete.ul.hasAttribute('hidden')) {
-    comboplete.open();
-  }
-  else {
-    comboplete.close();
-  }
-});
-
+      Awesomplete.$('.dropdown-input').addEventListener("click", function() {
+        if (comboplete.ul.childNodes.length === 0) {
+          comboplete.minChars = 0;
+          comboplete.evaluate();
+        }
+        else if (comboplete.ul.hasAttribute('hidden')) {
+          comboplete.open();
+        }
+        else {
+          comboplete.close();
+        }
+      });
     </script>
   </body>
 </html>
