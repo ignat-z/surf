@@ -13,6 +13,7 @@ require 'surf/configuration'
 require 'surf/endpoints/webhook_handler'
 require 'surf/endpoints/home_page'
 require 'surf/endpoints/auth_callback'
+require 'surf/endpoints/pair_pr_status'
 
 require 'surf/version'
 

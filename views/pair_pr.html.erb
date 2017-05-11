@@ -1,0 +1,60 @@
+<html>
+  <head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/awesomplete/1.1.1/awesomplete.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/awesomplete/1.1.1/awesomplete.min.css" rel="stylesheet" type="text/css" />
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700" rel="stylesheet" type="text/css" />
+    <style>
+      body {
+        background-color: #f1f1f1;
+        font-family: 'Lato', Arial, sans-serif;
+      }
+      .awesomplete input {
+        padding: .2em 1.5em;
+        font-size: 1.2em;
+        width: 20em;
+      }
+      .awesomplete li {
+        font-size: 1.3em;
+      }
+/*      .dropdown-btn {
+        padding: 1.5em 1.5em;
+      }*/
+    </style>
+  </head>
+  <body>
+
+    <p class="logo">🏄</p>
+    <% if pair %>
+      <%= uniq_id %> -> <%= pair %>
+    <% else %>
+      No pair
+    <% end %>
+
+    <br/>
+    <br/>
+
+<input data-list='<%= pull_requests.join(", ") %>' class="dropdown-input" />
+<!-- <button class="dropdown-btn" type="button"><span class="caret"></span></button> -->
+
+    <script>
+
+var comboplete = new Awesomplete('input.dropdown-input', {
+  minChars: 0,
+});
+
+Awesomplete.$('.dropdown-input').addEventListener("click", function() {
+  if (comboplete.ul.childNodes.length === 0) {
+    comboplete.minChars = 0;
+    comboplete.evaluate();
+  }
+  else if (comboplete.ul.hasAttribute('hidden')) {
+    comboplete.open();
+  }
+  else {
+    comboplete.close();
+  }
+});
+
+    </script>
+  </body>
+</html>

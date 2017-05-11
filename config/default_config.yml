@@ -8,6 +8,7 @@ surf:
     - surf/auth_callback
     - surf/webhook_handler
     - surf/home_page
+    - surf/pair_pr_status
   webhook_callbacks:
     - event: ping
       callbacks:
@@ -19,7 +20,7 @@ surf:
     - event: pull_request
       action: opened
       callbacks:
-        - surf/pr_pair
+        - surf/pair_pr
         - surf/pull_request_logger
         - surf/open_pull_request_notifier
     - event: pull_request

@@ -18,6 +18,10 @@ module Surf
       retreive_info
     end
 
+    def uniq_id
+      [info.base.repo.full_name, number].join("#")
+    end
+
     private
 
     def retreive_info
