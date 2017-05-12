@@ -9,17 +9,31 @@
         background-color: #f1f1f1;
         font-family: 'Lato', Arial, sans-serif;
       }
+      .center-text {
+        text-align: center;
+      }
       .center {
         margin-left:auto;
         margin-right:auto;
         width:27.85em;
       }
       .logo {
-        font-size: 7em;
+        font-size: 5em;
         text-align: center;
         padding-top: 7rem;
         padding-bottom: 0rem;
         margin-bottom: 1rem;
+      }
+      p {
+        color: rgba(0, 0, 0, 0.5);
+        margin: 10px 0 10px;
+        font-size: 1.7em;
+        font-weight: 200;
+        line-height: 1.3em;
+      }
+      .black {
+        color: black;
+        text-decoration: none;
       }
       .awesomplete input {
         padding: .4em 1.5em;
@@ -29,14 +43,32 @@
       .awesomplete li {
         font-size: 1.3em;
       }
+      .button {
+        background-color: #4CAF50;
+        color: #ffffff;
+        border-color: #4CAF50;
+        float: right;
+        border: 0;
+        padding: 0.5em 1em;
+        margin-top: 1em;
+        cursor: pointer;
+      }
     </style>
   </head>
   <body>
 
-    <p class="logo">🏄</p>
+    <div class="logo">🏄</div>
 
-    <div class="center">
-      <input data-list='<%= pull_requests.join(", ") %>' class="dropdown-input" />
+    <div>
+      <p class='center-text'>Connect PR<br/>
+        <a href="<%= current_pr.html_url %>" class='black'><%= uniq_id %></a>
+      </p>
+      <div class="center">
+        <form>
+          <input data-list='<%= pull_requests.join(", ") %>' class="dropdown-input" />
+          <button class='button'>Connect</button>
+        </form>
+      </div>
     </div>
 
     <script>

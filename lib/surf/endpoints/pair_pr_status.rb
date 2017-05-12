@@ -21,7 +21,12 @@ module Surf
 
     def pull_requests
       x = self.class.client.search_issues("is:pr state:open user:ignat-zakrevsky").items
-      x.map { |i| [i.repository_url.split("/").last(2).join('/'), i.number].join("#") }
+      all = x.map { |i| [i.repository_url.split("/").last(2).join('/'), i.number].join("#") }
+      all - [uniq_id]
+    end
+
+    def current_pr
+      @pr ||= self.class.client.pull_request([match[:user], '/', match[:repo]].join, match[:id])
     end
 
     def uniq_id
